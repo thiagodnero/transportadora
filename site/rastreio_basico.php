@@ -133,12 +133,15 @@ $id_usr = $_SESSION['login'];
                             <h6 class="m-0 font-weight-bold text-primary">Rastreio Basico</h6>
                         </div>
                         <div class="card-body">
-                            
+
                             <form action="registraCodigoBsc.php" method="post" id="form-buscar1" class="ajax">
 
                                 <label for="Tracking">Numero do rastreio:</label><br>
                                 <input type="text" id="nmr_rastreio_bsc" name="nmr_rastreio">
-                                <button type="button" onclick="setTrackingBasic()" class="btn btn-secondary btn-sm">Gerar codigo</button><br><br>
+
+                                <label>Quantidade de rastreios:</label><br>
+                                <input type="text" id="qtd_rastreios" name="qtd_rastreios">
+                                <button type="button" onclick="setTrackingBasic()" class="btn btn-secondary btn-sm">Gerar códigos</button><br><br>
 
                                 <label for="status">Status:</label><br>
                                 <select name="status" id="status">
@@ -225,12 +228,16 @@ $id_usr = $_SESSION['login'];
 
     <script>
         function setTrackingBasic() {
-            var stringAleatoria = '';
-            var caracteres = '0123456789';
-            for (var i = 0; i < 8; i++) {
-                stringAleatoria += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            var qtd_rastreios = document.getElementById("qtd_rastreios").value;
+            for (var x = 0; x < qtd_rastreios; x++) {
+                var stringAleatoria = '';
+                var caracteres = '0123456789';
+                for (var i = 0; i < 8; i++) {
+                    stringAleatoria += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+                }
+                stringAleatoria = "FE" + stringAleatoria + "BR";
             }
-            stringAleatoria = "FE" + stringAleatoria + "BR";
+
             document.getElementById("nmr_rastreio_bsc").value = stringAleatoria;
         }
     </script>
