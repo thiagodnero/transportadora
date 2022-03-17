@@ -136,9 +136,6 @@ $id_usr = $_SESSION['login'];
 
                             <form action="registraCodigoBsc.php" method="post" id="form-buscar1" class="ajax">
 
-                                <label for="Tracking">Numero do rastreio:</label><br>
-                                <input type="text" id="nmr_rastreio_bsc" name="nmr_rastreio">
-
                                 <label>Quantidade de rastreios:</label><br>
                                 <input type="text" id="qtd_rastreios" name="qtd_rastreios">
                                 <button type="button" onclick="setTrackingBasic()" class="btn btn-secondary btn-sm">Gerar códigos</button><br><br>
@@ -229,6 +226,7 @@ $id_usr = $_SESSION['login'];
     <script>
         function setTrackingBasic() {
             var qtd_rastreios = document.getElementById("qtd_rastreios").value;
+            var rastreios = [];
             for (var x = 0; x < qtd_rastreios; x++) {
                 var stringAleatoria = '';
                 var caracteres = '0123456789';
@@ -236,8 +234,11 @@ $id_usr = $_SESSION['login'];
                     stringAleatoria += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
                 }
                 stringAleatoria = "FE" + stringAleatoria + "BR";
+                rastreios.push(stringAleatoria);
             }
 
+            const input = document.createElement
+            
             document.getElementById("nmr_rastreio_bsc").value = stringAleatoria;
         }
     </script>
