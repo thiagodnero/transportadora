@@ -62,8 +62,8 @@ $id_usr = $_SESSION['login'];
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="rastreio_basico.php">Basico</a>
-                        <a class="collapse-item" href="rastreio_avancado.php">Avançado</a>
+                        <a class="collapse-item" href="rastreio_basico.php">Em Massa</a>
+                        <a class="collapse-item" href="rastreio_avancado.php">Único</a>
                     </div>
                 </div>
             </li>

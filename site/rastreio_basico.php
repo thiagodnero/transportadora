@@ -26,6 +26,7 @@ $id_usr = $_SESSION['login'];
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="shortcut icon" type="imagex/png" href="./images/plane.ico">
 
+
 </head>
 
 <body id="page-top">
@@ -59,8 +60,8 @@ $id_usr = $_SESSION['login'];
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="rastreio_basico.php">Basico</a>
-                        <a class="collapse-item" href="rastreio_avancado.php">Avançado</a>
+                        <a class="collapse-item" href="rastreio_basico.php">Em Massa</a>
+                        <a class="collapse-item" href="rastreio_avancado.php">Único</a>
                     </div>
                 </div>
             </li>
@@ -138,7 +139,9 @@ $id_usr = $_SESSION['login'];
 
                                 <label>Quantidade de rastreios:</label><br>
                                 <input type="text" id="qtd_rastreios" name="qtd_rastreios">
-                                <button type="button" onclick="setTrackingBasic()" class="btn btn-secondary btn-sm">Gerar códigos</button><br><br>
+                                <button type="button" onclick="setTrackingBasic()" class="btn btn-secondary btn-sm">Gerar códigos</button><br>
+                                <textarea class="form-control rounded-0" id="rastreios" name="rastreios" rows="2" cols="27" placeholder="Write something here..." style="display: none;"></textarea>
+                                <button type="button" id="button_clear" onclick="clearTextarea()" class="btn btn-secondary btn-sm" style="display: none;">Limpar códigos</button><br>
 
                                 <label for="status">Status:</label><br>
                                 <select name="status" id="status">
@@ -236,10 +239,14 @@ $id_usr = $_SESSION['login'];
                 stringAleatoria = "FE" + stringAleatoria + "BR";
                 rastreios.push(stringAleatoria);
             }
-
-            const input = document.createElement
-            
-            document.getElementById("nmr_rastreio_bsc").value = stringAleatoria;
+            document.getElementById("rastreios").style.display = 'block';
+            document.getElementById("button_clear").style.display = 'block';
+            document.getElementById("rastreios").value = rastreios;
+        }
+        function clearTextarea(){
+            document.getElementById("rastreios").value = "";
+            document.getElementById("rastreios").style.display = 'none';
+            document.getElementById("button_clear").style.display = 'none';
         }
     </script>
 
