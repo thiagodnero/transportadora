@@ -137,7 +137,7 @@ $id_usr = $_SESSION['login'];
 
                             <form action="registraCodigoBsc.php" method="post" id="form-buscar1" class="ajax">
 
-                                <label>Quantidade de rastreios:</label><br>
+                                <label>Quantidade de códigos a ser gerado:</label><br>
                                 <input type="text" id="qtd_rastreios" name="qtd_rastreios">
                                 <button type="button" onclick="setTrackingBasic()" class="btn btn-secondary btn-sm">Gerar códigos</button><br>
                                 <textarea class="form-control rounded-0" id="rastreios" name="rastreios" rows="2" cols="27" placeholder="Write something here..." style="display: none;"></textarea>
