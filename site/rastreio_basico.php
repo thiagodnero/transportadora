@@ -26,6 +26,7 @@ $id_usr = $_SESSION['login'];
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="shortcut icon" type="imagex/png" href="./images/plane.ico">
 
+
 </head>
 
 <body id="page-top">
@@ -59,8 +60,8 @@ $id_usr = $_SESSION['login'];
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="rastreio_basico.php">Basico</a>
-                        <a class="collapse-item" href="rastreio_avancado.php">Avançado</a>
+                        <a class="collapse-item" href="rastreio_basico.php">Em Massa</a>
+                        <a class="collapse-item" href="rastreio_avancado.php">Único</a>
                     </div>
                 </div>
             </li>
@@ -133,12 +134,14 @@ $id_usr = $_SESSION['login'];
                             <h6 class="m-0 font-weight-bold text-primary">Rastreio Basico</h6>
                         </div>
                         <div class="card-body">
-                            
+
                             <form action="registraCodigoBsc.php" method="post" id="form-buscar1" class="ajax">
 
-                                <label for="Tracking">Numero do rastreio:</label><br>
-                                <input type="text" id="nmr_rastreio_bsc" name="nmr_rastreio">
-                                <button type="button" onclick="setTrackingBasic()" class="btn btn-secondary btn-sm">Gerar codigo</button><br><br>
+                                <label>Quantidade de códigos a ser gerado:</label><br>
+                                <input type="text" id="qtd_rastreios" name="qtd_rastreios">
+                                <button type="button" onclick="setTrackingBasic()" class="btn btn-secondary btn-sm">Gerar códigos</button><br>
+                                <textarea class="form-control rounded-0" id="rastreios" name="rastreios" rows="2" cols="27" placeholder="Write something here..." style="display: none;"></textarea>
+                                <button type="button" id="button_clear" onclick="clearTextarea()" class="btn btn-secondary btn-sm" style="display: none;">Limpar códigos</button><br>
 
                                 <label for="status">Status:</label><br>
                                 <select name="status" id="status">
@@ -225,13 +228,25 @@ $id_usr = $_SESSION['login'];
 
     <script>
         function setTrackingBasic() {
-            var stringAleatoria = '';
-            var caracteres = '0123456789';
-            for (var i = 0; i < 8; i++) {
-                stringAleatoria += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            var qtd_rastreios = document.getElementById("qtd_rastreios").value;
+            var rastreios = [];
+            for (var x = 0; x < qtd_rastreios; x++) {
+                var stringAleatoria = '';
+                var caracteres = '0123456789';
+                for (var i = 0; i < 8; i++) {
+                    stringAleatoria += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+                }
+                stringAleatoria = "FE" + stringAleatoria + "BR";
+                rastreios.push(stringAleatoria);
             }
-            stringAleatoria = "FE" + stringAleatoria + "BR";
-            document.getElementById("nmr_rastreio_bsc").value = stringAleatoria;
+            document.getElementById("rastreios").style.display = 'block';
+            document.getElementById("button_clear").style.display = 'block';
+            document.getElementById("rastreios").value = rastreios;
+        }
+        function clearTextarea(){
+            document.getElementById("rastreios").value = "";
+            document.getElementById("rastreios").style.display = 'none';
+            document.getElementById("button_clear").style.display = 'none';
         }
     </script>
 

@@ -60,8 +60,8 @@ $id_usr = $_SESSION['id_usuario'];
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="rastreio_basico.php">Basico</a>
-                        <a class="collapse-item" href="rastreio_avancado.php">Avançado</a>
+                        <a class="collapse-item" href="rastreio_basico.php">Em Massa</a>
+                        <a class="collapse-item" href="rastreio_avancado.php">Único</a>
                     </div>
                 </div>
             </li>
@@ -140,23 +140,39 @@ $id_usr = $_SESSION['id_usuario'];
                                             <th>Numero rastreio</th>
                                             <th>Data criação</th>
                                             <th>Email</th>
+                                            <?php 
+                                            if($_SESSION['admin'] == 1){
+                                                echo "<th>Id usuario</th>";
+                                            }
+                                            ?>
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $sql_select = "SELECT `id`, `numero_rastreio`, `status`, `data_criacao`, `id_usuario`, `email` FROM `rastreios` WHERE `id_usuario` = '$id_usr' and `status` = 'Objeto postado'";
-                                        $consulta = mysqli_query($conn, $sql_select) or die(mysqli_error($conn));
+                                        $sql_select_admin = "SELECT * FROM `rastreios`";
+                                        if($_SESSION['admin'] == 1){
+                                            $consulta = mysqli_query($conn, $sql_select_admin) or die(mysqli_error($conn));
+                                        }
+                                        else{
+                                            $consulta = mysqli_query($conn, $sql_select) or die(mysqli_error($conn));
+                                        }                                        
                                         $linhas = mysqli_num_rows($consulta);
                                         if ($linhas > 0) {
                                             while ($dados = mysqli_fetch_array($consulta)) {
                                                 $nmr_rastreio = $dados['numero_rastreio'];
                                                 $data = $dados['data_criacao'];
                                                 $email = $dados['email'];
+                                                $user_id = $dados['id_usuario'];
+
                                                 echo "<tr>";
                                                 echo "<td>$nmr_rastreio</td>";
                                                 echo "<td>$data</td>";
                                                 echo "<td>$email</td>";
+                                                if($_SESSION['admin'] == 1){
+                                                    echo "<td>$user_id</td>";
+                                                }
                                                 echo "<td><button class=\"btn btn-info view_data\" id=" . $nmr_rastreio . ">Mais informações</button></td>";
                                                 echo "</tr>";
                                             }
