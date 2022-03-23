@@ -105,23 +105,14 @@ $id_usr = $_SESSION['login'];
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#changePasswordModal">
+                                    <i class='fas fa-key'></i>
+                                    Alterar senha
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
                                     Logout
                                 </a>
                             </div>
@@ -211,6 +202,40 @@ $id_usr = $_SESSION['login'];
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <a class="btn btn-primary" href="logout.php">Sair</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mudar senha Modal-->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Mudar senha</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="changePassword.php" method="post" onsubmit="return valida_form(this)">
+                        <!-- Início do Formulário -->
+                        <div class="form-group">
+                            <input type="password" name="oldPassword" id="oldPassword" class="form-control" placeholder="Digite sua senha atual">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="newPassword" id="newPassword" class="form-control" placeholder="Digite a nova senha">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="newPasswordConfirm" id="newPasswordConfirm" class="form-control" placeholder="Digite a nova senha">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-primary" type="submit">Alterar</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
